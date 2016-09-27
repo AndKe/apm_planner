@@ -30,6 +30,7 @@ This file is part of the QGROUNDCONTROL project
 
 #include "QGCCore.h"
 #include "MainWindow.h"
+#include "QIcon"
 #include "configuration.h"
 #include "logging.h"
 #include <QtWidgets/QApplication>
@@ -53,6 +54,7 @@ void msgHandler( QtMsgType type, const char* msg )
     if( type == QtFatalMsg ) abort();
 }
 #endif
+
 
 // Path for file logging
 static QString sLogPath;
@@ -91,6 +93,10 @@ int main(int argc, char *argv[])
 // install the message handler
 #ifdef Q_OS_WIN
     //qInstallMsgHandler( msgHandler );
+#endif
+
+#ifdef Q_OS_LINUX
+    QApplication::setWindowIcon(QIcon(":/files/APMIcons/AP_flat_128.png"));
 #endif
 
     // Init logging
