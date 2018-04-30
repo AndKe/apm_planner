@@ -146,7 +146,14 @@ void LinkManager::loadSettings()
                 settings.setArrayIndex(j);
                 QString host = settings.value("host").toString();
                 int port = settings.value("port").toInt();
+                if (host.contains("10.1.1.1"))
+                {
+                QLOG_DEBUG() << "Skipping Solo";
+                }
+                else
+                {
                 iface->addHost(tr("%1:%2").arg(host).arg(port));
+                }
             }
             settings.endArray(); // HOSTS
         }
